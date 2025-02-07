@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired,Email, Length
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired,Email, Length, EqualTo
 
 class Persona(FlaskForm):
     username = StringField('Username', validators=[
@@ -16,7 +16,12 @@ class Persona(FlaskForm):
         DataRequired(),
         Length(min=9, max=14)
     ])
-    password = StringField('Password', validators=[
+    password = PasswordField('Password', validators=[
+        DataRequired(),
+        Length(min=4, max=8),
+        EqualTo('confirm', message='Password must match inutl')
+    ])
+    confirm = PasswordField('Repeat password', validators=[
         DataRequired(),
         Length(min=4, max=8)
     ])

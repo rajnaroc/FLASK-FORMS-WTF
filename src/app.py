@@ -23,7 +23,17 @@ def formulario_simple():
 
 @app.route('/formulario-simple-objeto', methods=['GET', 'POST'])
 def formulario_objeto():
-        form = Persona()
+    form = Persona()
+
+    if form.validate() and request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        telefono = request.form.get('telefono')
+                
+        print(username,email,password,telefono)
+        return 'datos procesados'
+    else:
         return render_template('formulario-simple-objeto.html',form=form) 
 
 def status_404(error):
