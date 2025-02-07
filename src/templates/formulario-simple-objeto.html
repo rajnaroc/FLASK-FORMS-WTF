@@ -22,7 +22,10 @@
         <div class="form-floating">
             {{ form.username(class="form-control", placeholder="Username") }}
             {{ form.username.label }}
-        </div>
+            {{% for error in for.username.errors %}}
+                <span style="color: red">{{}}</span>
+            {% endfor %}
+            </div>
         <div class="form-floating">
             {{ form.email(class="form-control", placeholder="Email") }}
             {{ form.email.label }}

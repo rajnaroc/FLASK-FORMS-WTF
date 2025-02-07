@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired,Length
+from wtforms.validators import DataRequired,Email, Length
 
 class Persona(FlaskForm):
     username = StringField('Username', validators=[
@@ -9,7 +9,8 @@ class Persona(FlaskForm):
         ])
     email = StringField('Email', validators=[
         DataRequired(),
-        Length(min=5, max=12)
+        Length(min=5, max=12),
+        Email()
     ])
     telefono = StringField('Telefono', validators=[
         DataRequired(),
