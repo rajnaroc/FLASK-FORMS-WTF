@@ -34,7 +34,22 @@ def formulario_objeto():
         print(username,email,password,telefono)
         return 'datos procesados'
     else:
-        return render_template('formulario-simple-objeto.html',form=form) 
+        return render_template('formulario-simple-objeto.html',form=form)
+
+@app.route('/formulario-simple-objeto-macro', methods=['GET', 'POST'])
+def formulario_objeto_macro():
+    form = Persona()
+
+    if form.validate() and request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        telefono = request.form.get('telefono')
+                
+        print(username,email,password,telefono)
+        return 'datos procesados'
+    else:
+        return render_template('formulario-simple-macro.html',form=form) 
 
 def status_404(error):
     return '<h1>Pagina no encontrada</h1>'
